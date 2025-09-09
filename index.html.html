@@ -43,229 +43,239 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>النماذج الإدارية</title>
-    <style>
-      
-  body {
-    
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f1a35; /* أزرق غامق */
-    color: #ffffffd3;
-    direction: rtl;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-  }
-@keyframes pulseGlow {
-  0%   { box-shadow: 0 0 0 #ffffff; }
-  50%  { box-shadow: 0 0 12px #ffffff; }
-  100% { box-shadow: 0 0 0 #ffffff; }
-}
-
-input:hover, select:hover, textarea:hover, button:hover,
-input:focus, select:focus, textarea:focus, button:focus {
-  border-color: #ffffff;
-  animation: pulseGlow 0.6s ease;
-  outline: none; 
-}
-  canvas#starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: #0f1a35; 
-  }
-
-
-.custom-alert {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #ff4444; /* أحمر للتنبيه */
-  color: white;
-  padding: 15px 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 99999;
-}
-.custom-alert.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-      .image-gallery {
-        position: absolute;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        gap: 1000px;
-        padding: 10px;
-        z-index: 0;
-      }
-      .image-gallery img {
-        width: 250px;
-        height: auto;
-        border: none;
-        object-fit: contain;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
-        transition: transform 0.3s ease;
-      }
-      .image-gallery img:hover {
-        transform: scale(1.05);
-      }
-      .container {
-        width: 600px;
-        height: 800px;
-        margin: 40px auto;
-        background: #0f1a35;
-        padding: 30px;
-        border: 1.5px solid #ffffff;
-        border-radius: 20px;
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f1a35;
+      color: #ffffffd3;
+      direction: rtl;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 #ffffff; }
+      50% { box-shadow: 0 0 12px #ffffff; }
+      100% { box-shadow: 0 0 0 #ffffff; }
+    }
+    input:hover, select:hover, textarea:hover, button:hover,
+    input:focus, select:focus, textarea:focus, button:focus {
+      border-color: #ffffff;
+      animation: pulseGlow 0.6s ease;
+      outline: none;
+    }
+    canvas#starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #0f1a35;
+    }
+    .custom-alert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.4s ease-in-out;
+      z-index: 99999;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .custom-alert.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .custom-alert.success {
+      background-color: #28a745;
+      color: white;
+      border: 2px solid #218838;
+      animation: successPulse 0.5s ease-in-out;
+    }
+    .custom-alert.error {
+      background-color: #dc3545;
+      color: white;
+      border: 2px solid #c82333;
+      animation: errorShake 0.4s ease-in-out;
+    }
+    @keyframes successPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes errorShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-3px); }
+    }
+    .image-gallery {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 1000px;
+      padding: 10px;
+      z-index: 0;
+    }
+    .image-gallery img {
+      width: 250px;
+      height: auto;
+      border: none;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+    .container {
+      width: 600px;
+      height: 800px;
+      margin: 40px auto;
+      background: #0f1a35;
+      padding: 30px;
+      border: 1.5px solid #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
+      animation: glow 3s ease-in-out infinite alternate;
+      z-index: 1;
+      overflow-y: auto;
+    }
+    @keyframes glow {
+      0% {
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
-        animation: glow 3s ease-in-out infinite alternate;
-        z-index: 1;
-        overflow-y: auto;
       }
-      @keyframes glow {
-        0% {
-          box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        100% {
-          box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 0, 0, 0.6);
-        }
+      100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 0, 0, 0.6);
       }
-      h2 {
-        text-align: center;
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        font-weight: 800;
-        letter-spacing: 1.5px;
-        text-shadow: 0 0 5px rgb(255, 255, 255);
-      }
-      label {
-        font-weight: bold;
-        display: block;
-        margin-top: 15px;
-        font-size: 1.1rem;
-      }
-      input, select, textarea {
-        width: 100%;
-        padding: 12px 14px;
-        margin-top: 8px;
-        border-radius: 10px;
-        border: 2px solid rgb(29, 28, 28);
-        background: #02204d;
-        color: #ffffff;
-        font-size: 1rem;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      }
-      input:focus, select:focus, textarea:focus {
-        outline: none;
-        border-color: #ffffff;
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-      }
-      textarea {
-        resize: vertical;
-        height: 100px;
-      }
-      button {
-        background-color: #ffffff;
-        color: #02204d;
-        font-weight: 900;
-        border: none;
-        padding: 14px 0;
-        border-radius: 12px;
-        cursor: pointer;
-        font-size: 1.2rem;
-        letter-spacing: 1px;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        margin-top: 20px;
-        width: 100%;
-      }
-      button:hover {
-        background-color: #e0e0e0;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
-      }
-      .form-section {
-        display: none;
-      }
-      .form-section.active {
-        display: block;
-      }
-      .note {
-        color: #ffffff;
-        font-size: 1rem;
-        margin-top: 10px;
-        font-style: italic;
-        text-align: right;
-      }
-      #loadingOverlay {
-        position: fixed;
-        inset: 0;
-        background: black;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 99999;
-        opacity: 1;
-        transition: opacity 1s ease;
-        pointer-events: all;
-      }
-      #loadingOverlay.fade-out {
-        opacity: 0;
-        pointer-events: none;
-      }
-      .dual-fade-loader {
-        position: relative;
-        width: 100px;
-        height: 100px;
-      }
-      .circle {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 6px solid white;
-        opacity: 0;
-        animation: fadePulse 1.4s infinite ease-in-out;
-      }
-      .circle:nth-child(2) {
-        animation-delay: 0.7s;
-        border-color: #ccc;
-      }
-      @keyframes fadePulse {
-        0% {
-          transform: scale(0.5);
-          opacity: 0.3;
-        }
-        50% {
-          transform: scale(1);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1.5);
-          opacity: 0;
-        }
-      }
-    </style>
-  </head>
-  <body>
+    }
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 5px rgb(255, 255, 255);
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 2px solid rgb(29, 28, 28);
+      background: #02204d;
+      color: #ffffff;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    }
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    button {
+      background-color: #ffffff;
+      color: #02204d;
+      font-weight: 900;
+      border: none;
+      padding: 14px 0;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #e0e0e0;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+    .form-section {
+      display: none;
+    }
+    .form-section.active {
+      display: block;
+    }
+    .note {
+      color: #ffffff;
+      font-size: 1rem;
+      margin-top: 10px;
+      font-style: italic;
+      text-align: right;
+    }
+    #loadingOverlay {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 1;
+      transition: opacity 1s ease;
+      pointer-events: all;
+    }
+    #loadingOverlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .dual-fade-loader {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    .circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 6px solid white;
+      opacity: 0;
+      animation: fadePulse 1.4s infinite ease-in-out;
+    }
+    .circle:nth-child(2) {
+      animation-delay: 0.7s;
+      border-color: #ccc;
+    }
+    @keyframes fadePulse {
+      0% { transform: scale(0.5); opacity: 0.3; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
   <div id="loadingOverlay">
     <div class="dual-fade-loader">
       <div class="circle"></div>
@@ -379,9 +389,39 @@ input:focus, select:focus, textarea:focus, button:focus {
       <button onclick="copyExemption()">نسخ نص الإعفاء العسكري</button>
     </div>
   </div>
-  <div id="notification"></div>
+  <div id="notification" class="custom-alert"></div>
   <canvas id="starfield"></canvas>
-  <script>
+  <script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          var filteredData = jsonData.filter(row => row.some(filledCell));
+          var headerRowIndex = filteredData.findIndex((row, index) =>
+            row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+          );
+          if (headerRowIndex === -1 || headerRowIndex > 25) {
+            headerRowIndex = 0;
+          }
+          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error(e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
     // Starfield animation with Pleiades
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
@@ -441,7 +481,7 @@ input:focus, select:focus, textarea:focus, button:focus {
       const notification = document.getElementById('notification');
       notification.textContent = message;
       notification.classList.remove('success', 'error');
-      notification.classList.add(type);
+      notification.classList.add(type, 'custom-alert');
       notification.classList.add('show');
       setTimeout(() => {
         notification.classList.remove('show');
@@ -879,17 +919,16 @@ ${formattedIds}
 <@&1271924904593330267> <@984911897893695488>  
 <@&1271924904572227603> <@725655535172714608>**`;
         navigator.clipboard.writeText(text).then(() => {
-          showNotification('✅ تم نسخ نموذج الإعفاء العسكري!', 'success');
+          showNotification('✅ تم نسخ نموذج الإعفاء العسكري بنجاح!', 'success');
         }).catch((e) => {
           console.error('Clipboard error:', e);
-          showNotification('فشل النسخ التلقائي، يرجى النسخ يدوياً', 'error');
+          showNotification('فشل النسخ التلقائي، يرجى النسخ يدويًا', 'error');
         });
       } catch (e) {
         console.error('Error in copyExemption:', e);
         showNotification('خطأ أثناء نسخ نموذج الإعفاء: ' + e.message, 'error');
       }
     }
-
     function format12Hour(date) {
       try {
         let hours = date.getHours();
@@ -905,7 +944,6 @@ ${formattedIds}
         return '';
       }
     }
-
     function formatDateYMD(date) {
       try {
         const y = date.getFullYear();
@@ -920,7 +958,6 @@ ${formattedIds}
         return '';
       }
     }
-
     // Loading overlay
     (function() {
       const overlay = document.getElementById('loadingOverlay');
@@ -928,22 +965,18 @@ ${formattedIds}
         console.warn('Loading overlay element not found!');
         return;
       }
-
       const FADE_MS = 1000;
       const MIN_SHOW_MS = 1200;
       const start = performance.now();
-
       function hideOverlay() {
         overlay.classList.add('fade-out');
         setTimeout(() => overlay.remove(), FADE_MS);
       }
-
       window.addEventListener('load', () => {
         const elapsed = performance.now() - start;
         const remaining = Math.max(0, MIN_SHOW_MS - elapsed);
         setTimeout(hideOverlay, remaining);
       });
-
       setTimeout(() => {
         if (overlay && overlay.classList.contains('fade-out') === false) {
           hideOverlay();
